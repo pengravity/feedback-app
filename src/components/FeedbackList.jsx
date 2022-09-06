@@ -2,6 +2,7 @@ import React from 'react';
 
 import FeedbackElement from './FeedbackElement';
 import PropTypes from 'prop-types';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function FeedbackList({ feedback, handleDelete }) {
   if (!feedback || feedback.length === 0) {
@@ -9,13 +10,23 @@ function FeedbackList({ feedback, handleDelete }) {
   }
   return (
     <div className='feedback-list'>
-      {feedback.map((element) => (
-        <FeedbackElement
-          key={element.id}
-          element={element}
-          handleDelete={handleDelete}
-        />
-      ))}
+      <AnimatePresence>
+        {feedback.map((element) => (
+          <motion.div
+            key={element.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <FeedbackElement
+              key={element.id}
+              element={element}
+              handleDelete={handleDelete}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
     </div>
   );
 }
