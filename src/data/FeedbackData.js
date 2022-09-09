@@ -12,13 +12,9 @@ const FeedbackData = [
   {
     id: 3,
     rating: 5,
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. 
   },
-  {
-    id: 4,
-    rating: 6,
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur vel vitae commodi alias voluptatem est voluptatum ipsa quae.',
-  },
+ 
 ];
 
 export default FeedbackData;
