@@ -3,13 +3,16 @@ import { useContext } from 'react';
 
 import FeedbackContext from '../context/FeedbackContext';
 import PropTypes from 'prop-types';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaEdit } from 'react-icons/fa';
 
 function FeedbackElement({ element }) {
-  const { deleteFeedback } = useContext(FeedbackContext);
+  const { deleteFeedback, editFeedback } = useContext(FeedbackContext);
   return (
     <Card reverse={true}>
       <div className='num-display'>{element.rating}</div>
+      <button onClick={() => editFeedback(element)} className='edit'>
+        <FaEdit color='white' />
+      </button>
       <button onClick={() => deleteFeedback(element.id)} className='close'>
         <FaTimes color='white' />
       </button>
