@@ -16,7 +16,7 @@
       "text": "Feedback element 3 from the backend"
     },
     {
-      "rating": "8",
+      "rating": 8,
       "text": "new feedback from postman",
       "id": 4
     }
