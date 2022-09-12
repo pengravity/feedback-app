@@ -25,10 +25,10 @@ export const FeedbackProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const deleteFeedback = (id) => {
-    if (window.confirm('Are you sure you want to delete? ')) {
-      setFeedback(feedback.filter((element) => element.id !== id));
-    }
+  const deleteFeedback = async (id) => {
+    await fetch(`http://localhost:5000/feedback/${id}`, { method: 'DELETE' });
+
+    setFeedback(feedback.filter((element) => element.id !== id));
   };
 
   const addFeedback = async (newFeedback) => {
@@ -45,13 +45,23 @@ export const FeedbackProvider = ({ children }) => {
     setFeedback([data, ...feedback]);
   };
 
-  const updateFeedback = (id, updatedElement) => {
+  const updateFeedback = async (id, updatedElement) => {
+    const response = await fetch(`http://localhost:5000/feedback/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedElement),
+    });
+
+    const data = await response.json();
+
     setFeedback(
       feedback.map((element) =>
         element.id === id
           ? {
               ...element,
-              ...updatedElement,
+              ...data,
             }
           : element
       )
